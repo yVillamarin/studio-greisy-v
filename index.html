@@ -9,6 +9,7 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=630&fit=crop">
     <title>Studio Greisy - Cejas y Pestañas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -278,15 +279,27 @@
 
         .service-card {
             background: var(--color-white);
-            border-radius: 12px;
+            border-radius: 16px;
             border: 1px solid #E5E5E5;
             padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+
+        .service-card.animate-in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(176, 144, 97, 0.25);
+            border-color: var(--color-primary);
+        }
+
+        .service-card.animate-in:hover {
+            transform: translateY(-8px) scale(1.02);
         }
 
         .service-icon {
@@ -299,6 +312,12 @@
             justify-content: center;
             margin-bottom: 1rem;
             box-shadow: 0 4px 12px rgba(176, 144, 97, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(176, 144, 97, 0.4);
         }
 
         .service-icon i {
@@ -450,6 +469,63 @@
             transform: scale(1.15) rotate(-5deg);
         }
 
+        /* Social Icons Row - Circular buttons */
+        .social-icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 400px !important;
+            margin: 0 auto;
+        }
+
+        .social-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .social-btn:active {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .social-btn i {
+            font-size: 32px;
+            color: var(--color-white);
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover i {
+            transform: scale(1.2);
+        }
+
         /* About Section */
         .about-section {
             background: var(--color-white);
@@ -583,6 +659,19 @@
             .contact-buttons {
                 grid-template-columns: 1fr !important;
                 max-width: 300px !important;
+            }
+
+            .social-icons-row {
+                gap: 1rem;
+            }
+
+            .social-btn {
+                width: 60px;
+                height: 60px;
+            }
+
+            .social-btn i {
+                font-size: 28px;
             }
         }
     </style>
@@ -852,18 +941,15 @@
         <div class="container">
             <h2 class="section-title">¡Agenda tu cita ahora!</h2>
             <p style="text-align: center; font-size: 1.05rem; margin-bottom: 2rem; color: #555;">Estamos aquí para consentirte. Contáctanos por tu canal favorito:</p>
-            <div class="contact-buttons" style="grid-template-columns: repeat(3, 1fr); max-width: 700px;">
-                <a href="https://wa.me/573117087666?text=Hola!%20Quiero%20agendar%20una%20cita%20en%20Studio%20Greisy" class="contact-btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                    <i class="ti ti-brand-whatsapp"></i>
-                    <span>WhatsApp</span>
+            <div class="contact-buttons social-icons-row">
+                <a href="https://wa.me/573117087666?text=Hola!%20Quiero%20agendar%20una%20cita%20en%20Studio%20Greisy" class="social-btn btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
                 </a>
-                <a href="https://instagram.com/STUDIOGREISYV" class="contact-btn btn-instagram" target="_blank" rel="noopener noreferrer">
-                    <i class="ti ti-brand-instagram"></i>
-                    <span>@STUDIOGREISYV</span>
+                <a href="https://instagram.com/STUDIOGREISYV" class="social-btn btn-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://facebook.com/GreisyVillada" class="contact-btn btn-facebook" target="_blank" rel="noopener noreferrer">
-                    <i class="ti ti-brand-facebook"></i>
-                    <span>Greisy Villada</span>
+                <a href="https://www.facebook.com/share/18g2ZgYNaV/?mibextid=wwXIfr" class="social-btn btn-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
@@ -953,6 +1039,28 @@
                     });
                 }
             });
+        });
+
+        // Animaciones de entrada para tarjetas de servicios
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const serviceObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-in');
+                    }, index * 100);
+                    serviceObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            serviceObserver.observe(card);
         });
     </script>
 </body>
