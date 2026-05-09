@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Servicios profesionales de cejas y pestañas en Pereira. Extensiones, lifting, microblading y más. Agenda tu cita ahora.">
+    <meta name="description" content="Servicios profesionales de cejas y pestañas en Pereira. Extensiones, lifting, diseño y laminado de cejas. Agenda tu cita ahora.">
     <meta property="og:title" content="Studio Greisy - Cejas y Pestañas">
-    <meta property="og:description" content="Especialistas en cejas y pestañas. Extensiones, lifting, microblading y diseño de cejas en Pereira.">
+    <meta property="og:description" content="Especialistas en cejas y pestañas. Extensiones, lifting, diseño y laminado de cejas en Pereira.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=630&fit=crop">
     <title>Studio Greisy - Cejas y Pestañas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css">
@@ -205,37 +205,173 @@
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .gallery-item {
             position: relative;
-            height: 280px;
-            border-radius: 12px;
+            height: 350px;
+            border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .gallery-item:hover {
-            transform: scale(1.02);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(176, 144, 97, 0.3);
         }
 
         .gallery-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            background: linear-gradient(135deg, var(--color-light) 0%, var(--color-accent) 100%);
+            object-position: center;
+            background-color: #f8f8f8;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1.5rem 1rem 1rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Promotions Section */
+        .promotions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .promo-card {
+            background: var(--color-white);
+            border-radius: 16px;
+            border: 2px solid #E5E5E5;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(176, 144, 97, 0.2);
+            border-color: var(--color-primary);
+        }
+
+        .promo-card.featured {
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 25px rgba(176, 144, 97, 0.15);
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .promo-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+        }
+
+        .promo-price {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 1rem;
         }
 
-        .gallery-placeholder {
-            font-size: 48px;
+        .original-price {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .current-price {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--color-primary);
+        }
+
+        .promo-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: #555;
+        }
+
+        .promo-features i {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .promo-savings {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            text-align: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .gallery-caption {
@@ -272,9 +408,12 @@
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             margin-bottom: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .service-card {
@@ -337,6 +476,64 @@
             color: #666;
             margin-bottom: 1rem;
             line-height: 1.5;
+        }
+
+        .service-card.has-image {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .service-card.has-image .service-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card.has-image h3,
+        .service-card.has-image p,
+        .service-card.has-image .price {
+            padding: 0 1.5rem;
+        }
+
+        .service-card.has-image h3 {
+            margin-top: 1rem;
+        }
+
+        .service-card.has-image .price {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover .shine-effect::before {
+            left: 100%;
         }
 
         .price {
@@ -643,17 +840,22 @@
                 font-size: 1.5rem;
             }
 
-            .services-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
             .products-grid {
                 grid-template-columns: 1fr;
             }
 
             .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
-
+            
             .gallery-item {
-                height: 240px;
+                height: 300px;
             }
 
             .contact-buttons {
@@ -753,38 +955,95 @@
     <section class="section" style="background: var(--color-light);">
         <div class="container">
             <h2 class="section-title">Nuestros trabajos</h2>
-            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Algunos ejemplos de nuestros servicios. ¡Reemplaza con tus propias fotos!</p>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Resultados reales de nuestros servicios. ¡Calidad y profesionalismo garantizado!</p>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600&h=600&fit=crop&q=80');">
-                        <!-- Reemplazar con tus imágenes -->
-                    </div>
-                    <div class="gallery-caption">Extensiones de pestañas</div>
+                    <div class="gallery-img" style="background-image: url('image/WhatsApp Image 2026-05-08 at 10.38.04 PM.jpeg');"></div>
+                    <div class="gallery-caption">Extensiones de pestañas - Volumen ruso</div>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=600&fit=crop&q=80');">
-                    </div>
-                    <div class="gallery-caption">Diseño de cejas</div>
+                    <div class="gallery-img" style="background-image: url('image/WhatsApp Image 2026-05-08 at 10.38.49 PM (1).jpeg');"></div>
+                    <div class="gallery-caption">Diseño de cejas - Perfilado perfecto</div>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&h=600&fit=crop&q=80');">
-                    </div>
-                    <div class="gallery-caption">Microblading</div>
+                    <div class="gallery-img" style="background-image: url('image/WhatsApp Image 2026-05-08 at 10.38.49 PM.jpeg');"></div>
+                    <div class="gallery-caption">Lifting de pestañas - Efecto natural</div>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=600&fit=crop&q=80');">
-                    </div>
-                    <div class="gallery-caption">Lifting de pestañas</div>
+                    <div class="gallery-img" style="background-image: url('image/WhatsApp Image 2026-05-08 at 10.38.50 PM (1).jpeg');"></div>
+                    <div class="gallery-caption">Laminado de cejas - Cejas peinadas</div>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&h=600&fit=crop&q=80');">
-                    </div>
-                    <div class="gallery-caption">Limpieza facial</div>
+                    <div class="gallery-img" style="background-image: url('image/WhatsApp Image 2026-05-08 at 10.38.50 PM.jpeg');"></div>
+                    <div class="gallery-caption">Microblading - Técnica pelo a pelo</div>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-img" style="background-image: url('https://images.unsplash.com/photo-1522337094846-8a818192de1f?w=600&h=600&fit=crop&q=80');">
+                    <div class="gallery-img" style="background-image: url('image/WhatsApp Image 2026-05-08 at 10.38.50 PM (1).jpeg');"></div>
+                    <div class="gallery-caption">Combo cejas + pestañas - Look completo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section class="section" id="promociones">
+        <div class="container">
+            <h2 class="section-title">Promociones y Paquetes</h2>
+            <div class="promotions-grid">
+                <div class="promo-card featured">
+                    <div class="promo-badge">Más Popular</div>
+                    <div class="promo-header">
+                        <h3>Combo Completo</h3>
+                        <div class="promo-price">
+                            <span class="original-price">$140.000</span>
+                            <span class="current-price">$120.000</span>
+                        </div>
                     </div>
-                    <div class="gallery-caption">Tratamiento capilar</div>
+                    <div class="promo-content">
+                        <ul class="promo-features">
+                            <li><i class="ti ti-check"></i> Extensiones de pestañas</li>
+                            <li><i class="ti ti-check"></i> Diseño de cejas</li>
+                            <li><i class="ti ti-check"></i> Lifting de pestañas</li>
+                            <li><i class="ti ti-check"></i> Laminado de cejas</li>
+                        </ul>
+                        <div class="promo-savings">Ahorra $20.000</div>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="promo-header">
+                        <h3>Paquete Cejas Perfectas</h3>
+                        <div class="promo-price">
+                            <span class="original-price">$105.000</span>
+                            <span class="current-price">$85.000</span>
+                        </div>
+                    </div>
+                    <div class="promo-content">
+                        <ul class="promo-features">
+                            <li><i class="ti ti-check"></i> Diseño de cejas</li>
+                            <li><i class="ti ti-check"></i> Laminado de cejas</li>
+                            <li><i class="ti ti-check"></i> Mantenimiento incluido</li>
+                        </ul>
+                        <div class="promo-savings">Ahorra $20.000</div>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="promo-header">
+                        <h3>Paquete Pestañas Glamour</h3>
+                        <div class="promo-price">
+                            <span class="original-price">$145.000</span>
+                            <span class="current-price">$125.000</span>
+                        </div>
+                    </div>
+                    <div class="promo-content">
+                        <ul class="promo-features">
+                            <li><i class="ti ti-check"></i> Extensiones de pestañas</li>
+                            <li><i class="ti ti-check"></i> Lifting de pestañas</li>
+                            <li><i class="ti ti-check"></i> Retoque gratuito</li>
+                        </ul>
+                        <div class="promo-savings">Ahorra $20.000</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -796,61 +1055,43 @@
             <h2 class="section-title">Nuestros servicios</h2>
             <div class="services-grid">
                 <!-- Pestañas -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="ti ti-eye"></i>
+                <div class="service-card has-image">
+                    <div class="service-image shine-effect">
+                        <img src="image/extencion de pestañas.jpeg" alt="Extensiones de pestañas">
                     </div>
                     <h3>Extensiones de pestañas</h3>
                     <p>Pestañas voluminosas y naturales que realzan tu mirada. Efecto pelo a pelo o volumen ruso.</p>
-                    <div class="price">Desde $80.000</div>
+                    <div class="price">Desde $85.000</div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="ti ti-droplet"></i>
+                <div class="service-card has-image">
+                    <div class="service-image shine-effect">
+                        <img src="image/Lifting de Pestañas.jpeg" alt="Lifting de Pestañas">
                     </div>
                     <h3>Lifting de pestañas</h3>
                     <p>Curva natural y definida que dura hasta 8 semanas. Incluye tinte y nutrición.</p>
-                    <div class="price">$60.000</div>
+                    <div class="price">$80.000</div>
                 </div>
 
                 <!-- Cejas -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="ti ti-arrow-autofit-up"></i>
+                <div class="service-card has-image">
+                    <div class="service-image shine-effect">
+                        <img src="image/diseño de cejas.jpeg" alt="Diseño de cejas">
                     </div>
                     <h3>Diseño de cejas</h3>
                     <p>Perfilado perfecto según tu rostro. Incluye depilación, tinte y maquillaje.</p>
-                    <div class="price">$35.000</div>
+                    <div class="price">$25.000</div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="ti ti-brush"></i>
+                <div class="service-card has-image">
+                    <div class="service-image shine-effect">
+                        <img src="image/Laminado de Cejas.jpeg" alt="Laminado de Cejas">
                     </div>
-                    <h3>Microblading</h3>
-                    <p>Cejas perfectas con técnica pelo a pelo. Resultados naturales y duraderos.</p>
-                    <div class="price">$350.000</div>
+                    <h3>Laminado de Cejas</h3>
+                    <p>Cejas alineadas y con volumen natural. Efecto de cejas peinadas por hasta 4 semanas.</p>
+                    <div class="price">$80.000</div>
                 </div>
 
-                <!-- Definiciones -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="ti ti-sparkles"></i>
-                    </div>
-                    <h3>Limpieza facial profunda</h3>
-                    <p>Limpieza, exfoliación, extracción y mascarilla hidratante personalizada.</p>
-                    <div class="price">$70.000</div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="ti ti-wand"></i>
-                    </div>
-                    <h3>Perfilado facial</h3>
-                    <p>Contorno y definición con técnicas profesionales. Incluye masaje facial.</p>
-                    <div class="price">$55.000</div>
-                </div>
             </div>
         </div>
     </section>
