@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Servicios profesionales de pestañas, cejas, definiciones y productos capilares. Agenda tu cita ahora.">
-    <meta property="og:title" content="Beauty Studio - Pestañas, Cejas y Más">
-    <meta property="og:description" content="Servicios profesionales de belleza. Pestañas, cejas, definiciones y productos capilares.">
+    <meta name="description" content="Servicios profesionales de cejas y pestañas en Pereira. Extensiones, lifting, microblading y más. Agenda tu cita ahora.">
+    <meta property="og:title" content="Studio Greisy - Cejas y Pestañas">
+    <meta property="og:description" content="Especialistas en cejas y pestañas. Extensiones, lifting, microblading y diseño de cejas en Pereira.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=630&fit=crop">
-    <title>Beauty Studio - Pestañas, Cejas y Productos Capilares</title>
+    <title>Studio Greisy - Cejas y Pestañas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css">
     <style>
         * {
@@ -17,13 +17,14 @@
         }
 
         :root {
-            --color-primary: #D4537E;
-            --color-secondary: #AFA9EC;
-            --color-accent: #F5C4B3;
+            --color-primary: #B09061;
+            --color-secondary: #8B7355;
+            --color-accent: #FFEEE0;
             --color-dark: #2C2C2A;
-            --color-light: #FBEAF0;
+            --color-light: #FFEEE0;
+            --color-cream: #FFF5EB;
             --color-white: #FFFFFF;
-            --color-gold: #EF9F27;
+            --color-gold: #B09061;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
@@ -57,7 +58,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(212, 83, 126, 0.85) 0%, rgba(175, 169, 236, 0.75) 100%);
+            background: linear-gradient(135deg, rgba(176, 144, 97, 0.90) 0%, rgba(139, 115, 85, 0.85) 40%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -170,8 +171,23 @@
         .header {
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
             color: var(--color-white);
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1.5rem 2rem;
             text-align: center;
+        }
+
+        .header-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--color-white);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
         }
 
         .header h1 {
@@ -226,7 +242,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(212, 83, 126, 0.9), transparent);
+            background: linear-gradient(to top, rgba(176, 144, 97, 0.95), transparent);
             color: var(--color-white);
             padding: 1.5rem 1rem 1rem;
             font-weight: 500;
@@ -282,7 +298,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
-            box-shadow: 0 4px 12px rgba(212, 83, 126, 0.2);
+            box-shadow: 0 4px 12px rgba(176, 144, 97, 0.25);
         }
 
         .service-icon i {
@@ -373,19 +389,41 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 500;
+            padding: 1.25rem 2rem;
+            border-radius: 16px;
+            font-weight: 600;
             text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn:active {
+            transform: translateY(-2px) scale(0.98);
         }
 
         .btn-whatsapp {
@@ -403,13 +441,13 @@
             color: var(--color-white);
         }
 
-        .btn-email {
-            background: var(--color-accent);
-            color: var(--color-white);
+        .contact-btn i {
+            font-size: 28px;
+            transition: transform 0.3s ease;
         }
 
-        .contact-btn i {
-            font-size: 20px;
+        .contact-btn:hover i {
+            transform: scale(1.15) rotate(-5deg);
         }
 
         /* About Section */
@@ -491,7 +529,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(226, 75, 74, 0.3);
+            box-shadow: 0 6px 20px rgba(176, 144, 97, 0.35);
         }
 
         @media (max-width: 768px) {
@@ -541,15 +579,21 @@
             .gallery-item {
                 height: 240px;
             }
+
+            .contact-buttons {
+                grid-template-columns: 1fr !important;
+                max-width: 300px !important;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <h1>✨ Beauty Studio ✨</h1>
-        <p>Tu belleza, nuestra pasión</p>
-    </header>
+    <!-- <header class="header">
+        <img src="image/WhatsApp Image 2026-05-08 at 10.14.42 PM.jpeg" alt="Studio Greisy Logo" class="header-logo">
+        <h1>Studio Greisy</h1>
+        <p>Cejas y Pestañas</p>
+    </header> -->
 
     <!-- Carousel Banner -->
     <div class="carousel-container">
@@ -558,8 +602,9 @@
             <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=800&fit=crop&q=80');">
                 <div class="carousel-overlay">
                     <div class="carousel-content">
-                        <h2>Transforma tu mirada</h2>
-                        <p>Extensiones de pestañas con efecto natural y duradero</p>
+                        <img src="image/WhatsApp Image 2026-05-08 at 10.14.42 PM.jpeg" alt="Studio Greisy Logo" style="width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; box-shadow: 0 8px 32px rgba(0,0,0,0.3); margin-bottom: 1.5rem; object-fit: cover;">
+                        <h2>Studio Greisy</h2>
+                        <p>Especialistas en Cejas y Pestañas</p>
                         <a href="#servicios" class="carousel-cta">Ver servicios</a>
                     </div>
                 </div>
@@ -727,8 +772,8 @@
             <h2 class="section-title">Productos capilares premium</h2>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-image" style="background: linear-gradient(135deg, #E1F5EE, #9FE1CB); display: flex; align-items: center; justify-content: center;">
-                        <i class="ti ti-bottle" style="font-size: 64px; color: var(--color-secondary);"></i>
+                    <div class="product-image" style="background: linear-gradient(135deg, #FFF8F0, #E8D4B8); display: flex; align-items: center; justify-content: center;">
+                        <i class="ti ti-bottle" style="font-size: 64px; color: var(--color-primary);"></i>
                     </div>
                     <div class="product-info">
                         <h3>Shampoo hidratante</h3>
@@ -738,8 +783,8 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image" style="background: linear-gradient(135deg, #EEEDFE, #CECBF6); display: flex; align-items: center; justify-content: center;">
-                        <i class="ti ti-flask" style="font-size: 64px; color: var(--color-accent);"></i>
+                    <div class="product-image" style="background: linear-gradient(135deg, #F5EDE0, #D4C4A8); display: flex; align-items: center; justify-content: center;">
+                        <i class="ti ti-flask" style="font-size: 64px; color: var(--color-primary);"></i>
                     </div>
                     <div class="product-info">
                         <h3>Tratamiento restaurador</h3>
@@ -749,8 +794,8 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FAECE7, #F5C4B3); display: flex; align-items: center; justify-content: center;">
-                        <i class="ti ti-heart" style="font-size: 64px; color: #D85A30;"></i>
+                    <div class="product-image" style="background: linear-gradient(135deg, var(--color-cream), var(--color-accent)); display: flex; align-items: center; justify-content: center;">
+                        <i class="ti ti-heart" style="font-size: 64px; color: var(--color-primary);"></i>
                     </div>
                     <div class="product-info">
                         <h3>Aceite capilar nutritivo</h3>
@@ -760,8 +805,8 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image" style="background: linear-gradient(135deg, #FBEAF0, #F4C0D1); display: flex; align-items: center; justify-content: center;">
-                        <i class="ti ti-spray" style="font-size: 64px; color: #D4537E;"></i>
+                    <div class="product-image" style="background: linear-gradient(135deg, var(--color-cream), var(--color-accent)); display: flex; align-items: center; justify-content: center;">
+                        <i class="ti ti-spray" style="font-size: 64px; color: var(--color-primary);"></i>
                     </div>
                     <div class="product-info">
                         <h3>Serum anti-frizz</h3>
@@ -807,26 +852,22 @@
         <div class="container">
             <h2 class="section-title">¡Agenda tu cita ahora!</h2>
             <p style="text-align: center; font-size: 1.05rem; margin-bottom: 2rem; color: #555;">Estamos aquí para consentirte. Contáctanos por tu canal favorito:</p>
-            <div class="contact-buttons">
-                <a href="https://wa.me/573001234567?text=Hola!%20Quiero%20agendar%20una%20cita" class="contact-btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <div class="contact-buttons" style="grid-template-columns: repeat(3, 1fr); max-width: 700px;">
+                <a href="https://wa.me/573117087666?text=Hola!%20Quiero%20agendar%20una%20cita%20en%20Studio%20Greisy" class="contact-btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
                     <i class="ti ti-brand-whatsapp"></i>
                     <span>WhatsApp</span>
                 </a>
-                <a href="mailto:info@beautystudio.com" class="contact-btn btn-email">
-                    <i class="ti ti-mail"></i>
-                    <span>Email</span>
-                </a>
-                <a href="https://instagram.com/beautystudio" class="contact-btn btn-instagram" target="_blank" rel="noopener noreferrer">
+                <a href="https://instagram.com/STUDIOGREISYV" class="contact-btn btn-instagram" target="_blank" rel="noopener noreferrer">
                     <i class="ti ti-brand-instagram"></i>
-                    <span>Instagram</span>
+                    <span>@STUDIOGREISYV</span>
                 </a>
-                <a href="https://facebook.com/beautystudio" class="contact-btn btn-facebook" target="_blank" rel="noopener noreferrer">
+                <a href="https://facebook.com/GreisyVillada" class="contact-btn btn-facebook" target="_blank" rel="noopener noreferrer">
                     <i class="ti ti-brand-facebook"></i>
-                    <span>Facebook</span>
+                    <span>Greisy Villada</span>
                 </a>
             </div>
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://wa.me/573001234567?text=Hola!%20Quiero%20agendar%20una%20cita" class="cta-button" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/573117087666?text=Hola!%20Quiero%20agendar%20una%20cita%20en%20Studio%20Greisy" class="cta-button" target="_blank" rel="noopener noreferrer">
                     Agendar cita por WhatsApp
                 </a>
             </div>
@@ -836,7 +877,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Beauty Studio. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Studio Greisy. Todos los derechos reservados.</p>
             <p style="margin-top: 0.5rem;">Pereira, Risaralda - Colombia</p>
         </div>
     </footer>
