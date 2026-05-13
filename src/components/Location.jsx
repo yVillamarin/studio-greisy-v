@@ -19,7 +19,8 @@ export default function Location() {
               <i className="ti ti-clock"></i>
               <div>
                 <h3>Horario de atención</h3>
-                <p>Lunes a Sábado: 9:00 AM - 7:00 PM</p>
+                <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                <p>Sábado: 9:00 AM - 4:00 PM</p>
                 <p>Domingo: Cerrado</p>
               </div>
             </div>
