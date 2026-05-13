@@ -7,15 +7,15 @@ export default function Services() {
   const generateWhatsAppMessage = (service) => {
     const message = `🗓️ *SOLICITUD DE CITA* - Studio Greisy ✨
 
-💅 *Servicio:* ${service.title}
-💰 *Precio:* ${service.price}
+      💅 *Servicio:* ${service.title}
+      💰 *Precio:* ${service.price}
 
-⏰ ¿A qué hora estás disponible para agendar?
+      ⏰ ¿A qué hora estás disponible para agendar?
 
-━━━━━━━━━━━━━━━━━━
-📍 *Studio Greisy - Cejas y Pestañas*
-💇‍♀️ ¡Tu belleza es nuestra prioridad!`
-    
+      ━━━━━━━━━━━━━━━━━━
+      📍 *Studio Greisy - Cejas y Pestañas*
+      💇‍♀️ ¡Tu belleza es nuestra prioridad!`
+          
     const encodedMessage = encodeURIComponent(message)
     return `https://wa.me/${businessWhatsApp}?text=${encodedMessage}`
   }

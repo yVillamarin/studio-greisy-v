@@ -9,6 +9,7 @@ import Benefits from './components/Benefits'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AppointmentScheduler from './components/AppointmentScheduler'
+import Location from './components/Location'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Promotions />
       <ProductsCarousel />
       <Benefits />
+      <Location />
       <Contact />
       <Footer />
     </div>

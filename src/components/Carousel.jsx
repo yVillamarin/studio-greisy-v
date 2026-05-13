@@ -15,8 +15,12 @@ export default function Carousel() {
           <div
             key={slide.id}
             className="carousel-slide"
-            style={{ backgroundImage: `url(${slide.bgImage})` }}
           >
+            <img
+              src={slide.bgImage}
+              alt={slide.title}
+              className="carousel-slide-bg"
+            />
             <div className="carousel-overlay">
               <div className="carousel-content">
                 {slide.logo && (
