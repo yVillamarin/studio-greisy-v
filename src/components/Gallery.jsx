@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 export default function Gallery() {
   const galleryItems = [
     {
@@ -32,21 +34,86 @@ export default function Gallery() {
     }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 30 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
     <section className="section" style={{ background: 'var(--color-light)' }}>
       <div className="container">
-        <h2 className="section-title">Nuestros trabajos</h2>
-        <p style={{ textAlign: 'center', marginBottom: '2rem', color: '#666' }}>
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Nuestros trabajos
+        </motion.h2>
+        <motion.p 
+          style={{ textAlign: 'center', marginBottom: '2rem', color: '#666' }}
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
           Resultados reales de nuestros servicios. ¡Calidad y profesionalismo garantizado!
-        </p>
-        <div className="gallery-grid">
+        </motion.p>
+        <motion.div 
+          className="gallery-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {galleryItems.map((item) => (
-            <div key={item.id} className="gallery-item">
-              <img src={item.image} alt={item.caption} className="gallery-img" />
-              <div className="gallery-caption">{item.caption}</div>
-            </div>
+            <motion.div
+              key={item.id}
+              className="gallery-item"
+              variants={itemVariants}
+              whileHover={{ 
+                y: -8,
+                scale: 1.02,
+                boxShadow: "0 12px 40px rgba(176, 144, 97, 0.3)"
+              }}
+            >
+              <motion.img 
+                src={item.image} 
+                alt={item.caption} 
+                className="gallery-img"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.4 }}
+              />
+              <motion.div 
+                className="gallery-caption"
+                initial={{ opacity: 0, y: 20 }}
+                whileHover={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {item.caption}
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

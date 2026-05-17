@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import products from '../data/products'
 
 const PRODUCTS_PER_VIEW = {
@@ -66,83 +67,139 @@ export default function ProductsCarousel() {
   return (
     <section className="products-section" id="productos">
       <div className="container">
-        <h2 className="section-title">Productos capilares</h2>
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Productos capilares
+        </motion.h2>
         <div className="products-carousel-container">
-          <button
+          <motion.button
             className="products-carousel-arrow prev"
             onClick={() => moveCarousel(-1)}
             aria-label="Anterior"
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(176, 144, 97, 0.3)" }}
+            whileTap={{ scale: 0.9 }}
           >
             <i className="ti ti-chevron-left" />
-          </button>
+          </motion.button>
 
-          <div className="products-carousel-track" style={{ transform: `translateX(${offset}%)` }}>
+          <motion.div 
+            className="products-carousel-track" 
+            style={{ transform: `translateX(${offset}%)` }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
             {products.map((product, index) => (
-              <div key={product.id} className="product-slide" style={{ flex: `0 0 ${100 / perView}%` }}>
-                <div className="product-card">
-                  <div className="product-image">
+              <motion.div 
+                key={product.id} 
+                className="product-slide" 
+                style={{ flex: `0 0 ${100 / perView}%` }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
+              >
+                <motion.div 
+                  className="product-card"
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: "0 12px 30px rgba(176, 144, 97, 0.25)"
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div 
+                    className="product-image"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <img 
                       src={product.image} 
                       alt={product.name} 
                       onClick={() => setSelectedImage(product.image)}
+                      style={{ cursor: 'pointer' }}
                     />
-                  </div>
+                  </motion.div>
                   <div className="product-info">
                     <h3>{product.name}</h3>
-                    <a
+                    <motion.a
                       href={`https://wa.me/573117087666?text=Hola!%20Quiero%20comprar%20el%20${encodeURIComponent(product.name)}`}
                       className="product-order-btn"
                       target="_blank"
                       rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       Hacer pedido
-                    </a>
+                    </motion.a>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <button
+          <motion.button
             className="products-carousel-arrow next"
             onClick={() => moveCarousel(1)}
             aria-label="Siguiente"
+            whileHover={{ scale: 1.1, backgroundColor: "rgba(176, 144, 97, 0.3)" }}
+            whileTap={{ scale: 0.9 }}
           >
             <i className="ti ti-chevron-right" />
-          </button>
+          </motion.button>
         </div>
 
         <div className="products-carousel-dots">
           {Array.from({ length: totalPages }).map((_, index) => (
-            <button
+            <motion.button
               key={index}
               className={`products-carousel-dot${index === currentPage ? ' active' : ''}`}
               onClick={() => goToSlide(index)}
+              whileHover={{ scale: 1.3 }}
+              whileTap={{ scale: 0.8 }}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: index * 0.05 }}
             />
           ))}
         </div>
       </div>
 
       {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="image-modal-overlay" 
-          onClick={() => setSelectedImage(null)}
-        >
-          <button 
-            className="image-modal-close" 
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            className="image-modal-overlay" 
             onClick={() => setSelectedImage(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            ×
-          </button>
-          <img 
-            src={selectedImage} 
-            alt="Imagen completa" 
-            className="image-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+            <motion.button 
+              className="image-modal-close" 
+              onClick={() => setSelectedImage(null)}
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 180 }}
+              transition={{ duration: 0.3 }}
+            >
+              ×
+            </motion.button>
+            <motion.img 
+              src={selectedImage} 
+              alt="Imagen completa" 
+              className="image-modal-content"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

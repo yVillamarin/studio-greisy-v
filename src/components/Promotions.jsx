@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import useCarousel from '../hooks/useCarousel'
 
 export default function Promotions() {
@@ -36,62 +37,134 @@ export default function Promotions() {
     }
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
     <section className="section" id="promociones">
       <div className="container">
-        <h2 className="section-title">Promociones y Paquetes</h2>
-        <div className="promotions-grid">
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Promociones y Paquetes
+        </motion.h2>
+        <motion.div 
+          className="promotions-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {promotions.map((promo) => (
-            <div
+            <motion.div
               key={promo.id}
               className={`promo-card${promo.badge ? ' featured' : ''}`}
+              variants={itemVariants}
+              whileHover={{ 
+                y: -8,
+                boxShadow: "0 12px 30px rgba(176, 144, 97, 0.3)"
+              }}
             >
               {promo.badge && (
-                <div className="promo-badge">{promo.badge}</div>
+                <motion.div 
+                  className="promo-badge"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring" }}
+                >
+                  {promo.badge}
+                </motion.div>
               )}
-              <div className="promo-card-image">
-                <img 
+              <motion.div 
+                className="promo-card-image"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.img 
                   src={promo.image} 
                   alt={promo.title} 
                   onClick={() => setSelectedImage(promo.image)}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ cursor: 'pointer' }}
                 />
-              </div>
+              </motion.div>
               <div className="promo-card-body">
                 <h3>{promo.title}</h3>
-                <a
+                <motion.a
                   href={`https://wa.me/573117087666?text=Hola!%20Quiero%20Comprar%20el%20${promo.title}%20Especial%20de%20las%20madres`}
                   className="promo-order-btn"
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Hacer pedido
-                </a>
+                </motion.a>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="image-modal-overlay" 
-          onClick={() => setSelectedImage(null)}
-        >
-          <button 
-            className="image-modal-close" 
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            className="image-modal-overlay" 
             onClick={() => setSelectedImage(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            ×
-          </button>
-          <img 
-            src={selectedImage} 
-            alt="Imagen completa" 
-            className="image-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+            <motion.button 
+              className="image-modal-close" 
+              onClick={() => setSelectedImage(null)}
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 180 }}
+              transition={{ duration: 0.3 }}
+            >
+              ×
+            </motion.button>
+            <motion.img 
+              src={selectedImage} 
+              alt="Imagen completa" 
+              className="image-modal-content"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

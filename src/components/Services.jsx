@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import useIntersectionObserver from '../hooks/useIntersectionObserver'
 
 export default function Services() {
@@ -61,45 +62,93 @@ export default function Services() {
 
   const { ref, animated } = useIntersectionObserver()
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
     <section className="section" id="servicios">
       <div className="container">
-        <h2 className="section-title">Nuestros servicios</h2>
-        <div className="services-grid">
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Nuestros servicios
+        </motion.h2>
+        <motion.div 
+          className="services-grid"
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={animated ? "visible" : "hidden"}
+        >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={service.id}
-              ref={index === 0 ? ref : null}
-              className={`service-card has-image${animated ? ' animate-in' : ''}`}
-              style={{
-                opacity: animated ? 1 : 0,
-                transform: animated
-                  ? 'none'
-                  : `translateY(40px) scale(0.95)`,
-                transition: `all 0.6s ease ${index * 0.1}s`
+              className="service-card has-image"
+              variants={itemVariants}
+              whileHover={{ 
+                y: -10,
+                boxShadow: "0 20px 40px rgba(176, 144, 97, 0.3)"
               }}
             >
-              <div className="service-image shine-effect">
+              <motion.div 
+                className="service-image shine-effect"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
                 <img src={service.image} alt={service.title} />
-              </div>
+              </motion.div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
-              <div className="price">{service.price}</div>
-              <a
+              <motion.div 
+                className="price"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.4 }}
+              >
+                {service.price}
+              </motion.div>
+              <motion.a
                 href={generateWhatsAppMessage(service)}
                 className="cta-button"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '20px', height: '20px', marginRight: '8px', fill: 'white' }}>
                   <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/>
                 </svg>
                 Agendar Cita
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
