@@ -27,7 +27,7 @@ export default function About() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             Somos especialistas en realzar tu belleza natural con servicios
-            profesionales de pestañas, cejas, definiciones faciales y productos
+            profesionales de pestañas, cejas y productos
             capilares de alta calidad.
           </motion.p>
           <motion.p
