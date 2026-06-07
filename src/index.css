@@ -32,6 +32,7 @@ body {
     height: 500px;
     overflow: hidden;
     background: var(--color-dark);
+    z-index: 2;
 }
 
 .carousel-slides {
@@ -1152,12 +1153,13 @@ body {
 /* --- Promotion Banner --- */
 .promotion-banner {
     background: linear-gradient(135deg, #FFCD00 0%, #003087 50%, #C60C30 100%);
-    padding: 2rem 0;
+    padding: 3rem 0;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     margin: 0;
     border-bottom: 4px solid #003087;
+    z-index: 1;
 }
 
 .promotion-banner::before {
@@ -1194,6 +1196,7 @@ body {
 
 .promotion-banner-text {
     flex: 1;
+    text-align: center;
 }
 
 .promotion-badge {
@@ -1261,17 +1264,50 @@ body {
 
 @media (max-width: 768px) {
     .promotion-banner {
-        padding: 1.5rem 0;
+        padding: 2rem 0;
     }
 
     .promotion-banner-content {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .promotion-banner-text {
+        text-align: center;
     }
 
     .promotion-banner h3 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        line-height: 1.3;
+        margin-bottom: 0.25rem;
+    }
+
+    .promotion-banner p {
+        font-size: 0.95rem;
+    }
+
+    .promotion-banner-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.95rem;
+        gap: 0.5rem;
+    }
+
+    .promotion-banner-btn i {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .promotion-banner {
+        padding: 2.5rem 0;
+    }
+
+    .promotion-banner h3 {
+        font-size: 1.5rem;
     }
 
     .promotion-banner p {
@@ -1279,8 +1315,6 @@ body {
     }
 
     .promotion-banner-btn {
-        width: 100%;
-        justify-content: center;
         padding: 0.9rem 2rem;
         font-size: 1rem;
     }
