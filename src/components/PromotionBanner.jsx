@@ -20,54 +20,68 @@ export default function PromotionBanner() {
     }
   }
 
-  const bannerAnimation = isMobile
-    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.5 } }
-    : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.8, ease: "easeOut" } }
+  // Confetti particles with football theme colors
+  const confettiColors = ['#FFCD00', '#003087', '#C60C30'] // Colombia colors
+  const confettiCount = isMobile ? 15 : 30
 
-  const titleAnimation = isMobile
-    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: 0.2, duration: 0.4 } }
-    : { initial: { opacity: 0, x: -30 }, animate: { opacity: 1, x: 0 }, transition: { delay: 0.4, duration: 0.6 } }
-
-  const buttonAnimation = isMobile
-    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { delay: 0.3, duration: 0.4 } }
-    : { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 }, transition: { delay: 0.6, duration: 0.5 } }
-
-  const hoverEffect = isMobile ? {} : { whileHover: { scale: 1.02 }, transition: { duration: 0.3 } }
-  const buttonHover = isMobile ? {} : { whileHover: { scale: 1.05 }, whileTap: { scale: 0.95 } }
-  const iconAnimation = isMobile
-    ? { animate: { y: [0, 3, 0] }, transition: { duration: 1.5, repeat: Infinity } }
-    : { animate: { y: [0, 5, 0] }, transition: { duration: 1.5, repeat: Infinity } }
+  const confettiParticles = Array.from({ length: confettiCount }).map((_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 8 + 4,
+    color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+    delay: Math.random() * 2,
+    duration: Math.random() * 3 + 2
+  }))
 
   return (
     <motion.div
       className="promotion-banner"
-      {...bannerAnimation}
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
-      <div className="container">
+      {/* Confetti Background */}
+      {confettiParticles.map((particle) => (
         <motion.div
-          className="promotion-banner-content"
-          {...hoverEffect}
-        >
+          key={particle.id}
+          style={{
+            position: 'absolute',
+            width: particle.size,
+            height: particle.size,
+            backgroundColor: particle.color,
+            borderRadius: Math.random() > 0.5 ? '50%' : '0',
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            opacity: 0.6
+          }}
+          animate={{
+            y: [0, -100, 0],
+            rotate: [0, 360],
+            x: [0, Math.random() * 50 - 25, 0]
+          }}
+          transition={{
+            duration: particle.duration,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+
+      <div className="container">
+        <div className="promotion-banner-content">
           <div className="promotion-banner-text">
-            <motion.h3
-              {...titleAnimation}
-            >
+            <h3>
               ¡Combos Especiales del Mes!
-            </motion.h3>
+            </h3>
           </div>
-          <motion.button
+          <button
             className="promotion-banner-btn"
             onClick={scrollToPromotions}
-            {...buttonAnimation}
-            {...buttonHover}
           >
             Ver Promociones
-            <motion.i
-              className="ti ti-arrow-down"
-              {...iconAnimation}
-            />
-          </motion.button>
-        </motion.div>
+            <i className="ti ti-arrow-down" />
+          </button>
+        </div>
       </div>
     </motion.div>
   )
