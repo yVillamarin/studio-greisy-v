@@ -7,32 +7,20 @@ export default function Promotions() {
   const promotions = [
     {
       id: 1,
-      image: '/image/WhatsApp Image 2026-05-13 at 11.04.20 AM (1).jpeg',
-      title: 'Combo 1',
+      image: '/image/combo 1.jpeg',
+      title: 'Combo Fanática',
       badge: null
     },
     {
       id: 2,
-      image: '/image/WhatsApp Image 2026-05-13 at 11.04.20 AM (2).jpeg',
-      title: 'Combo 2',
+      image: '/image/combo 2.jpeg',
+      title: 'Combo la Tricolor',
       badge: null
     },
     {
       id: 3,
-      image: '/image/WhatsApp Image 2026-05-13 at 11.04.20 AM (3).jpeg',
-      title: 'Combo 3',
-      badge: null
-    },
-    {
-      id: 4,
-      image: '/image/WhatsApp Image 2026-05-13 at 11.04.20 AM.jpeg',
-      title: 'Combo 4',
-      badge: null
-    },
-    {
-      id: 5,
-      image: '/image/WhatsApp Image 2026-05-13 at 11.04.20 AM (4).jpeg',
-      title: 'Combo 5',
+      image: '/image/combo 3.jpeg',
+      title: 'Combo la Titular',
       badge: null
     }
   ]
@@ -116,7 +104,7 @@ export default function Promotions() {
               <div className="promo-card-body">
                 <h3>{promo.title}</h3>
                 <motion.a
-                  href={`https://wa.me/573117087666?text=Hola!%20Quiero%20Comprar%20el%20${promo.title}%20Especial%20de%20las%20madres`}
+                  href={`https://wa.me/573117087666?text=Hola!%20Quiero%20Comprar%20el%20${promo.title}`}
                   className="promo-order-btn"
                   target="_blank"
                   rel="noopener noreferrer"

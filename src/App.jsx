@@ -10,11 +10,13 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AppointmentScheduler from './components/AppointmentScheduler'
 import Location from './components/Location'
+import PromotionBanner from './components/PromotionBanner'
 
 function App() {
   return (
     <div className="App">
       <Carousel />
+      <PromotionBanner />
       <About />
       <Services />
       <AppointmentScheduler />

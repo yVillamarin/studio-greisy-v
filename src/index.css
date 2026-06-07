@@ -1148,3 +1148,140 @@ body {
     .calendar-fab svg { width: 28px; height: 28px; }
     .modal-content { padding: 2rem; }
 }
+
+/* --- Promotion Banner --- */
+.promotion-banner {
+    background: linear-gradient(135deg, #FFCD00 0%, #003087 50%, #C60C30 100%);
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    margin: 0;
+    border-bottom: 4px solid #003087;
+}
+
+.promotion-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    animation: shimmer 8s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.promotion-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.promotion-banner-text {
+    flex: 1;
+}
+
+.promotion-badge {
+    display: inline-block;
+    background: #003087;
+    color: #FFCD00;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid #FFCD00;
+}
+
+.promotion-banner h3 {
+    color: #FFFFFF;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+}
+
+.promotion-banner p {
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.promotion-banner-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #C60C30;
+    color: #FFFFFF;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 3px solid #FFCD00;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.promotion-banner-btn:hover {
+    background: #003087;
+    border-color: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
+}
+
+.promotion-banner-btn i {
+    font-size: 1.2rem;
+    color: #FFCD00;
+}
+
+@media (max-width: 768px) {
+    .promotion-banner {
+        padding: 1.5rem 0;
+    }
+
+    .promotion-banner-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .promotion-banner h3 {
+        font-size: 1.4rem;
+    }
+
+    .promotion-banner p {
+        font-size: 1rem;
+    }
+
+    .promotion-banner-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+    }
+}
