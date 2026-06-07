@@ -1153,13 +1153,13 @@ body {
 /* --- Promotion Banner --- */
 .promotion-banner {
     background: linear-gradient(135deg, #FFCD00 0%, #003087 50%, #C60C30 100%);
-    padding: 3rem 0;
+    padding: 2rem 0;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     margin: 0;
     border-bottom: 4px solid #003087;
-    z-index: 1;
+    z-index: 10;
 }
 
 .promotion-banner::before {
@@ -1264,13 +1264,13 @@ body {
 
 @media (max-width: 768px) {
     .promotion-banner {
-        padding: 2rem 0;
+        padding: 1.5rem 0;
     }
 
     .promotion-banner-content {
         flex-direction: column;
         text-align: center;
-        gap: 1.5rem;
+        gap: 1rem;
         padding: 0 1rem;
     }
 
@@ -1279,20 +1279,20 @@ body {
     }
 
     .promotion-banner h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         line-height: 1.3;
         margin-bottom: 0.25rem;
     }
 
     .promotion-banner p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .promotion-banner-btn {
         width: 100%;
         justify-content: center;
-        padding: 0.85rem 1.5rem;
-        font-size: 0.95rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
         gap: 0.5rem;
     }
 
@@ -1303,11 +1303,11 @@ body {
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .promotion-banner {
-        padding: 2.5rem 0;
+        padding: 1.75rem 0;
     }
 
     .promotion-banner h3 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .promotion-banner p {
@@ -1315,7 +1315,7 @@ body {
     }
 
     .promotion-banner-btn {
-        padding: 0.9rem 2rem;
+        padding: 0.85rem 2rem;
         font-size: 1rem;
     }
 }

@@ -15,8 +15,8 @@ import PromotionBanner from './components/PromotionBanner'
 function App() {
   return (
     <div className="App">
-      <Carousel />
       <PromotionBanner />
+      <Carousel />
       <About />
       <Services />
       <AppointmentScheduler />
